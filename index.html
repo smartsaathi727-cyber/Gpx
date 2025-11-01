@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>How to Download Movies — New Update</title>
+<style>
+  :root{
+    --bg:#0f1724; --card:#0b1220; --accent:#06b6d4; --muted:#94a3b8; --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:linear-gradient(180deg,#071028 0%, #071e2f 100%); color:#e6eef6;
+    -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    padding:24px;
+  }
+  .container{max-width:980px; margin:0 auto;}
+  header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{
+    width:56px;height:56px;border-radius:10px; background:linear-gradient(135deg,var(--accent),#7c3aed);
+    display:flex;align-items:center;justify-content:center;font-weight:700;color:#022; box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+  }
+  h1{font-size:20px;margin:0}
+  p.lead{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+    border-radius:12px; padding:18px; box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    border:1px solid rgba(255,255,255,0.03);
+  }
+
+  .player{
+    display:grid; gap:12px;
+  }
+  .video-wrap{position:relative;border-radius:10px;overflow:hidden;background:#000}
+  video{width:100%;height:auto;display:block;background:#000}
+  .controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px}
+
+  .btn{
+    background:var(--accent); color:#022; padding:10px 14px;border-radius:10px;border:none;
+    font-weight:600; cursor:pointer; text-decoration:none;
+    box-shadow:0 6px 18px rgba(6,182,212,0.14);
+  }
+  .btn.ghost{background:transparent;color:var(--accent);border:1px solid rgba(6,182,212,0.12)}
+  .btn.secondary{background:#1f2937;color:#e6eef6}
+  .meta{color:var(--muted);font-size:13px;margin-top:6px}
+
+  .right-actions{display:flex;gap:10px;align-items:center}
+  .icon-btn{width:44px;height:44px;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;background:var(--glass);border:1px solid rgba(255,255,255,0.02); cursor:pointer}
+  .icon-btn img{width:22px;height:22px;display:block}
+
+  footer{margin-top:18px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+
+  /* Login modal */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;z-index:60}
+  .modal{background:linear-gradient(180deg, #071427, #051024); padding:22px;border-radius:12px;max-width:420px;width:92%;border:1px solid rgba(255,255,255,0.04)}
+  .modal h3{margin:0 0 8px}
+  .field{margin-top:10px}
+  input[type="text"], input[type="password"]{
+    width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04); background:transparent;color:inherit;
+  }
+  .row{display:flex;gap:8px;align-items:center}
+  .muted{color:var(--muted);font-size:13px}
+  .notice{margin-top:10px;color:var(--muted);font-size:13px}
+  @media (max-width:640px){
+    header{flex-direction:column;align-items:flex-start;gap:8px}
+    .right-actions{margin-left:auto}
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true">HD</div>
+        <div>
+          <h1>How to Download Movies — New Update</h1>
+          <p class="lead">Latest player demo. Video niche me playback aur direct download button diya gaya hai.</p>
+        </div>
+      </div>
+
+      <div class="right-actions" aria-hidden="false">
+        <button class="icon-btn" id="loginOpen" title="Fast Login (demo)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM21 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+        <!-- Instagram logo; using placeholder link '#' for safety.
+             If you want an actual Instagram URL, replace href="#" with the real URL. -->
+        <a class="icon-btn" href="#" id="instaLink" title="Instagram (opens link)">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><path fill='%23ffffff' d='M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm5 6.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5zm5.5-.8a.9.9 0 1 1 0-1.8.9.9 0 0 1 0 1.8zM12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10z'/></svg>" alt="Instagram">
+        </a>
+      </div>
+    </header>
+
+    <main class="card">
+      <section class="player">
+        <div class="video-wrap" aria-label="Video player">
+          <!-- User-provided MP4 -->
+          <video id="mainVideo" controls preload="metadata" controlsList="nodownload">
+            <source src="https://github.com/ankit072024kumar-spec/Ankitsaathi/raw/refs/heads/main/VN20251013_212153.mp4" type="video/mp4">
+            आपका ब्राउज़र वीडियो टैग सपोर्ट नहीं करता — नीचे दिए गए डाउनलोड बटन से फ़ाइल डाउनलोड करें।
+          </video>
+        </div>
+
+        <div class="controls">
+          <!-- Direct download link: points to the MP4 (will download or open in browser) -->
+          <a class="btn" id="if any problem contact us" href="https://ig.me/m/smartsaathi.in" download="movie.mp4">Download Video</a>
+
+          <!-- Play/Pause quick control -->
+          <button class="btn ghost" id="playPause">Play/Pause</button>
+
+          <!-- Contact us -->
+          <a class="btn secondary" id="contactBtn" href="https://ig.me/m/smartsaathi.in">If any problem — Contact us </a>
+
+          <!-- Info -->
+          <div style="margin-left:auto" class="meta">Format: MP4 • Size: depends on file • Source: GitHub</div>
+        </div>
+
+        <div class="notice muted">
+        
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div>© <strong>How to Download Movies</strong> • Updated: <span id="updatedDate"></span></div>
+      <div class="muted">Made with care — demo player</div>
+    </footer>
+  </div>
+
+  <!-- Login modal (client-side demo only) -->
+  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="loginTitle">
+      <h3 id="loginTitle">Fast Login (Demo)</h3>
+      <p class="muted"></p>
+
+      <div class="field">
+        <label class="muted">Username</label>
+        <input id="username" type="text" placeholder="Enter username" autocomplete="username">
+      </div>
+      <div class="field">
+        <label class="muted">Password</label>
+        <input id="password" type="password" placeholder="Enter password" autocomplete="current-password">
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button class="btn" id="loginSubmit">Login</button>
+        <button class="btn ghost" id="loginCancel">Cancel</button>
+      </div>
+
+      <div class="notice" id="loginMsg" aria-live="polite"></div>
+    </div>
+  </div>
+
+<script>
+  // set update date
+  document.getElementById('updatedDate').textContent = new Date().toLocaleDateString('en-GB');
+
+  // Video controls
+  const video = document.getElementById('mainVideo');
+  const playPauseBtn = document.getElementById('playPause');
+  playPauseBtn.addEventListener('click', () => {
+    if (video.paused) video.play();
+    else video.pause();
+    playPauseBtn.textContent = video.paused ? 'Play' : 'Pause';
+  });
+
+  // Prevent browser from showing native download option on controls (controlsList)
+  // Note: many browsers still allow contextual menu -> Save as... This is normal.
+
+  // Modal logic (client-side demo only)
+  const backdrop = document.getElementById('modalBackdrop');
+  const loginOpen = document.getElementById('loginOpen');
+  const loginCancel = document.getElementById('loginCancel');
+  const loginSubmit = document.getElementById('loginSubmit');
+  const loginMsg = document.getElementById('loginMsg');
+
+  loginOpen.addEventListener('click', () => {
+    backdrop.style.display = 'flex';
+    backdrop.setAttribute('aria-hidden','false');
+    document.getElementById('username').focus();
+  });
+  loginCancel.addEventListener('click', () => {
+    backdrop.style.display = 'none';
+    backdrop.setAttribute('aria-hidden','true');
+    loginMsg.textContent = '';
+  });
+
+  // Simple mock login: accepts anything but shows simulated success
+  loginSubmit.addEventListener('click', () => {
+    const u = document.getElementById('username').value.trim();
+    const p = document.getElementById('password').value;
+    if (!u || !p) {
+      loginMsg.textContent = 'Please enter username and password.';
+      return;
+    }
+    // Simulated fast-login animation
+    loginMsg.textContent = 'Logging in...';
+    loginSubmit.disabled = true;
+    setTimeout(() => {
+      loginMsg.textContent = 'Login successful (demo). You are not authenticated on any server.';
+      loginSubmit.disabled = false;
+      setTimeout(() => {
+        backdrop.style.display = 'none';
+        backdrop.setAttribute('aria-hidden','true');
+        loginMsg.textContent = '';
+      }, 900);
+    }, 700);
+  });
+
+  // Contact button behavior: user can change mailto in HTML
+  document.getElementById('contactBtn').addEventListener('click', () => {
+    // nothing extra needed, mailto will open user's email client
+  });
+
+  // Instagram placeholder: we refuse to create deceptive/fake links.
+  const insta = document.getElementById('instaLink');
+  insta.addEventListener('click', (e) => {
+    // If you want a real Instagram profile, replace href="#" in HTML with the actual URL.
+    if (insta.getAttribute('href') === '#') {
+      e.preventDefault();
+      alert('Instagram link placeholder. Replace href="https://ig.me/m/smartsaathi.in" with your real Instagram URL in the HTML to open it.');
+    }
+  });
+</script>
+</body>
+</html>
